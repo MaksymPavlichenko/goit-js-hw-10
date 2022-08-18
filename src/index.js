@@ -5,13 +5,13 @@ import { fetchCountries } from './fetchCountries';
 
 const DEBOUNCE_DELAY = 300;
 
-const inputSearch = document.querySelector (`#serch-box`);
+const inputSearch = document.querySelector (`#search-box`);
 const countryList = document.querySelector (`.country-list`);
 const countryInfo = document.querySelector (`.country-info`);
 
 function showCountry() {
     fetchCountries(inputSearch.value.trim())
-    .then(country =>{
+    .then(country => {
         countryList.innerHTML = '';
         countryInfo.innerHTML = '';
         console.log(country.length);
@@ -54,3 +54,5 @@ function showError(error) {
     countryList.innerHTML = '';
     countryInfo.innerHTML = '';
 }
+
+inputSearch.addEventListener('input', debounce(showCountry, DEBOUNCE_DELAY));
